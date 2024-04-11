@@ -1,47 +1,63 @@
-import puppeteer from 'puppeteer';
-import fs from 'fs';
+import puppeteer from "puppeteer";
+import fs from "fs";
 import handlebars from "handlebars";
-import path from 'path';
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 
-export const createPdf = async () => {
-  console.log(':::: createPdf ::::')
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
+const dataSendToHTML = {
+  hasUser: true,
+  firstName: "Luiz",
+  lastName: "Silveira",
+  batata: false,
+};
+
+export const createPdf = async (pdfName: string) => {
+  // Tempo inicial da função;
+  const inicio = performance.now();
   // Create a browser instance
-  // const browser = await puppeteer.launch({ headless: true, ignoreDefaultArgs: ['--disable-extensions'], args: ['--no-sandbox', '--disable-setuid-sandbox'],});
-  const browser = await puppeteer.launch();
+  // const browser = await puppeteer.launch({
+  //   headless: true,
+  //   ignoreDefaultArgs: ["--disable-extensions"],
+  //   args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  // });
+  const browser = await puppeteer.launch({
+    ignoreDefaultArgs: ["--disable-extensions"],
+  });
 
   // Create a new page
-  console.log(':::: before: browser.newPage ::::')
   const page = await browser.newPage();
-  console.log(':::: browser.newPage ::::')
 
   // Handlebars para manipular o HTML:
-  const dataSendToHTML = {
-    hasUser: true,
-    name: 'Luiz',
-    lastname: 'Silveira'
-  }
-
-  console.log('dirname: ', __dirname)
-  const htmlToConvert = fs.readFileSync('./sample.html', 'utf-8');
-  const template = handlebars.compile(htmlToConvert);
-  const html = template(dataSendToHTML);
-
 
   //Get HTML content from HTML file
   // const html = fs.readFileSync('sample.html', 'utf-8');
-  await page.setContent(html, { waitUntil: 'domcontentloaded' });
+  // "./src/sample.html"
+  const htmltoReadPath = path.join(__dirname, "sample.html");
+  const htmlToConvert = fs.readFileSync(htmltoReadPath, "utf-8");
+
+  const template = handlebars.compile(htmlToConvert);
+  const html = template(dataSendToHTML);
+
+  await page.setContent(html, { waitUntil: "domcontentloaded" });
 
   // To reflect CSS used for screens instead of print
-  await page.emulateMediaType('screen');
+  await page.emulateMediaType("screen");
 
   // Downlaod the PDF
   const pdf = await page.pdf({
-    path: 'result.pdf',
     printBackground: true,
-    format: 'A4',
+    width: "360px",
   });
+
+  fs.writeFileSync(`${pdfName}.pdf`, pdf);
 
   // Close the browser instance
   await browser.close();
-}
+
+  // Tempo final da função
+  const fim = performance.now();
+  console.log("Tempo de execução: ", fim - inicio, " milissegundos");
+};
