@@ -1,0 +1,1 @@
+const htmlPDF = new PuppeteerHTMLPDF();
