@@ -63,18 +63,6 @@
         letter-spacing: -0.01em;
       }
 
-      .content--neutralHigh,
-      .content--neutralHigh--bold {
-        font-family: SharonSans;
-        font-size: 12px;
-        line-height: 140%;
-        letter-spacing: -0.01em;
-        color: #303742;
-      }
-      .content--neutralHigh--bold {
-        font-weight: 700;
-      }
-
       .paragraph__regular--neutralHigh {
         margin: 16px 0;
       }
@@ -195,12 +183,6 @@
         flex: 1;
       }
 
-      tr > td:first-child {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
       .anticipationFeeSection {
         display: flex;
         gap: 12px;
@@ -260,7 +242,7 @@
     <header class="header">
       <div class="header__stoneContent">
         <div class="header__logoAndDate">
-          <img width="83" height="22" src="images/logo.svg" />
+          <img src="images/logo.svg" />
           <span class="body__small__regular--white">18 de janeiro de 2024</span>
         </div>
 
@@ -279,12 +261,13 @@
     </header>
 
     <div class="container">
-      <h2 class="heading__medium__bold--neutralHigh mtb-md">
+      <h2 class="heading__medium__bold--neutralHigh">
         Taxas nas transações com cartão
       </h2>
+
       <table class="cardFees__table">
         <thead class="feesTable__head">
-          <tr class="content--neutralHigh--bold">
+          <tr class="content--neutralHigh--bold feesTable__row">
             <th></th>
             <th>Débito</th>
             <th>Crédito à vista</th>
@@ -331,24 +314,27 @@
         </tbody>
       </table>
 
+      <% if (hasAutomaticAnticipation == false) { %>
       <p class="paragraph__regular--neutralHigh">
         Recebimento do crédito em 30 dias, ou de acordo com as parcelas da
         venda.
       </p>
+      <% } %>
 
       <p class="paragraph__regular--neutralHigh">
         Parcelamento de 13x a 18x disponível apenas para cartões elegíveis para
         esta modalidade.
       </p>
 
-      <h2 class="heading__medium__bold--neutralHigh mtb-md">
-        Taxas de antecipação
-      </h2>
+      <h2 class="heading__medium__bold--neutralHigh">Taxas de antecipação</h2>
 
       <div class="anticipationFeeSection">
-        <div
-          class="anticipationFeeSection__block anticipationFeeSection__block--active"
-        >
+        <% if (hasAutomaticAnticipation) { %>
+          <div class="anticipationFeeSection__block anticipationFeeSection__block--active">
+        <% } else { %>
+          <div class="anticipationFeeSection__block" >
+        <% } %>
+
           <span
             class="text__description__regular--neutralHigh bold anticipationFeeSection__text"
           >

@@ -13,11 +13,14 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.12.7",
+    "prettier": "3.2.5",
     "tsup": "^8.0.2",
     "tsx": "^4.7.2",
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@types/ejs": "^3.1.5",
+    "ejs": "^3.1.10",
     "fastify": "^4.26.2",
     "handlebars": "^4.7.8",
     "puppeteer": "^22.6.3"
