@@ -1,0 +1,56 @@
+{
+  "clientName": "Teste Teste teste teste teste teste teste teste",
+  "CNPJ": "05875956000150",
+  "hasAutomaticAnticipation": true,
+  "hasExemptionByVolume": false,
+  "stoneBankingEnabled": true,
+  "paymentModel": "monthly",
+  "RentFreeTransactionAmount": 30000,
+  "liquidationType": "mesmo_dia",
+  "ipvCondition": "3",
+  "hasPixActive": true,
+  "productQuantity": 1,
+  "monthlyPayment": 90.9,
+  "pixQRCodeFee": 0.75,
+  "automaticAnticipationFee": 1.6,
+  "spotAnticipationFee": 2.1,
+  "visa": {
+    "debitFee": 1.15,
+    "creditFee": 2.25,
+    "credit2To6Fee": 2.44,
+    "credit7To12Fee": 3.17,
+    "credit13To18Fee": 3.17,
+    "credit1xTotalEffectiveCost": 3.72,
+    "credit6xTotalEffectiveCost": 8.04,
+    "credit12xTotalEffectiveCost": 12.61
+  },
+  "master": {
+    "debitFee": 1.15,
+    "creditFee": 2.25,
+    "credit2To6Fee": 2.44,
+    "credit7To12Fee": 3.17,
+    "credit13To18Fee": 3.17,
+    "credit1xTotalEffectiveCost": 3.72,
+    "credit6xTotalEffectiveCost": 8.04,
+    "credit12xTotalEffectiveCost": 12.61
+  },
+  "elo": {
+    "debitFee": 1.57,
+    "creditFee": 2.8,
+    "credit2To6Fee": 3.15,
+    "credit7To12Fee": 3.66,
+    "credit13To18Fee": 3.66
+  },
+  "hiper": {
+    "creditFee": 1.91,
+    "credit2To6Fee": 2.82,
+    "credit7To12Fee": 3.21,
+    "credit13To18Fee": 3.21
+  },
+  "amex": {
+    "creditFee": null,
+    "credit2To6Fee": 3.12,
+    "credit7To12Fee": 3.24,
+    "credit13To18Fee": 3.24
+  }
+}

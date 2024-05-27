@@ -14,7 +14,6 @@ export type OpportunityProps = {
   monthlyPayment: number;
   automaticAnticipationFee: number;
   spotAnticipationFee: number;
-  date: string;
 
   visa: {
     debitFee: number;
